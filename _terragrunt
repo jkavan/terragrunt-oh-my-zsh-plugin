@@ -38,7 +38,7 @@ __option_targets() {
     while read -r line; do
         # remove space
         line=${line//[[:space:]]/}
-        # # remove resource string first matched
+        # remove resource string first matched
         line=${line/resource/}
         
         if [ ${line:(-1)}={ ]; then
