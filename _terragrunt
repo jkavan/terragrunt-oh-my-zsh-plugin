@@ -31,6 +31,10 @@ __option_targets() {
     lines=$(cat *.tf | grep -e "^resource")
     targets=""
 
+    if [ ${#lines} -eq 0 ]; then
+      return 0
+    fi
+
     while read -r line; do
         # remove space
         line=${line//[[:space:]]/}
@@ -174,7 +178,7 @@ __plan() {
         '-parallelism=[(10) Limit the number of concurrent operations.]' \
         '-refresh=[(true) Update state prior to checking for differences.]' \
         '-state=[(statefile) Path to a Terraform state file to use to look up Terraform-managed resources. By default it will use the state "terraform.tfstate" if it exists.]' \
-        '-target=[(resource) Resource to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]' \
+        '*-target[(resource) Resource to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]: :__option_targets' \
         '-var[("foo=bar") Set a variable in the Terraform configuration. This flag can be set multiple times.]' \
         '-var-file=[(foo) Set variables in the Terraform configuration from a file. If "terraform.tfvars" or any ".auto.tfvars" files are present, they will be automatically loaded.]' \
 }
