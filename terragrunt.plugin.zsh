@@ -7,3 +7,6 @@ function tg_prompt_info() {
       echo "[${workspace}]"
     fi
 }
+
+# alias
+alias tg="terragrunt"

@@ -27,8 +27,7 @@ __option_targets() {
     local lines
     local targets
 
-    IFS=$'\n' # make newlines the only separator
-    lines=$(cat *.tf | grep -e "^resource")
+    lines=$(cat *.tf | grep -e "^\s*resource" | sort)
     targets=""
 
     if [ ${#lines} -eq 0 ]; then
