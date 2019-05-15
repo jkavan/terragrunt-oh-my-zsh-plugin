@@ -21,6 +21,11 @@ _terragrunt_cmds=(
     'validate:Validates the Terraform files'
     'version:Prints the Terraform version'
     'workspace:Workspace management'
+    'plan-all:(Terragrunt) Display the plans of a "stack" by running "terragrunt plan" in each subfolder'
+    'apply-all:(Terragrunt) Apply a "stack" by running "terragrunt apply" in each subfolder'
+    'output-all:(Terragrunt) Display the outputs of a "stack" by running "terragrunt output" in each subfolder'
+    'destroy-all:(Terragrunt) Destroy a "stack" by running "terragrunt destroy" in each subfolder'
+    'validate-all:(Terragrunt) Validate "stack" by running "terragrunt validate" in each subfolder'
 )
 
 __option_targets() {
