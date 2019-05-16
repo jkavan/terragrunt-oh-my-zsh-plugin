@@ -101,7 +101,7 @@ __destroy() {
         '-refresh=[(true) Update state prior to checking for differences. This has no effect if a plan file is given to apply.]' \
         '-state=[(terraform.tfstate) Path to read and save state (unless state-out is specified).]' \
         '-state-out=[(path) Path to write state to that is different than "-state". This can be used to preserve the old state.]' \
-        '-target=[(resource) Resource to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]' \
+        '*-target[(resource) Resource to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]: :__option_targets' \
         '*-var[("foo=bar") Set a variable in the Terraform configuration. This flag can be set multiple times.]' \
         '-var-file=[(foo) Set variables in the Terraform configuration from a file. If "terraform.tfvars" or any ".auto.tfvars" files are present, they will be automatically loaded.]'
 }
@@ -214,7 +214,7 @@ __refresh() {
         '-no-color[If specified, output will not contain any color.]' \
         '-state=[(path) Path to read and save state (unless state-out is specified). Defaults to "terraform.tfstate".]' \
         '-state-out=[(path) Path to write state to that is different than "-state". This can be used to preserve the old state.]' \
-        '-target=[(resource) A Resource Address to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]' \
+        '*-target[(resource) Resource to target. Operation will be limited to this resource and its dependencies. This flag can be used multiple times.]: :__option_targets' \
         '*-var[("foo=bar") Set a variable in the Terraform configuration. This flag can be set multiple times.]' \
         '-var-file=[(path) Set variables in the Terraform configuration from a file. If "terraform.tfvars" is present, it will be automatically loaded if this flag is not specified.]'
 }
