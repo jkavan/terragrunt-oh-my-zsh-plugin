@@ -32,7 +32,7 @@ __option_targets() {
     local lines
     local targets
 
-    lines=$(cat *.tf | grep -e "^\s*resource" | sort)
+    lines=$(cat *.tf | grep -e "^\s*resource\s" | sort)
     targets=""
 
     if [ ${#lines} -eq 0 ]; then
