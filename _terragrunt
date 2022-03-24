@@ -38,43 +38,6 @@ _terragrunt_cmds=(
     'validate-all:(Terragrunt) DEPRECATED: use run-all. Validate "stack" by running "terragrunt validate" in each subfolder'
 )
 
-__option_targets() {
-    local lines
-    local targets
-
-    lines=$(cat *.tf | grep -e "^\s*resource\s" | sort)
-    targets=""
-
-    if [ ${#lines} -eq 0 ]; then
-      return 0
-    fi
-
-    while read -r line; do
-        # remove space
-        line=${line//[[:space:]]/}
-        # remove resource string first matched
-        line=${line/resource/}
-
-        if [ ${line:(-1)}={ ]; then
-            # remove { char
-            line=${line%\{}
-        fi
-
-        # # now string will looks like  "foo""bar"
-        # # "" -> .
-        line=${line/\"\"/\.}
-
-        line=${line:1}
-        line=${line%\"}
-
-        targets="${targets} ${line} "
-    done <<< "$lines"
-
-    targets="($targets)"
-    _describe "targets" $targets
-    return 0
-}
-
 __apply() {
     _arguments \
         '-backup=[(path) Path to backup the existing state file before modifying. Defaults to the "-state-out" path with ".backup" extension. Set to "-" to disable backup.]' \
@@ -328,7 +291,11 @@ __state_show() {
 }
 
 __statelist() {
-  compadd $(terraform state list $opt_args[-state])
+    # Get the Terraform working directory and move there
+    tf_working_dir="$(terragrunt terragrunt-info 2> /dev/null | grep WorkingDir | sed -r 's/.*: \"(.*)\"/\1/')"
+    cd $tf_working_dir
+    # Output the list of resources and use them for completion
+    compadd $(terraform state list $opt_args[-state] 2> /dev/null)
 }
 
 __taint() {
