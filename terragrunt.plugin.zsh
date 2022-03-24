@@ -3,7 +3,7 @@ function tg_prompt_info() {
     [[ "$PWD" == ~ ]] && return
     # check if in terraform dir
     if [ -d .terraform ]; then
-      workspace=$(terrgrunt workspace show 2> /dev/null) || return
+      workspace=$(terragrunt workspace show 2> /dev/null) || return
       echo "[${workspace}]"
     fi
 }
