@@ -18,7 +18,7 @@ Since that repository hasn't been updated for years and is now archived, I decid
 1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`):
 
 ```bash
-git clone https://github.com/hanjunlee/terragrunt-oh-my-zsh-plugin ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/terragrunt
+git clone https://github.com/jkavan/terragrunt-oh-my-zsh-plugin ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/terragrunt
 ```
 
 2. Add the plugin to the list of plugins for Oh My Zsh to load (inside `~/.zshrc`):
@@ -52,4 +52,3 @@ your .zsh-theme file and in a chosen place insert:
 $FG[045]\
 $(tg_prompt_info)\
 ```
-
