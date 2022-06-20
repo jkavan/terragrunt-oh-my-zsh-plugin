@@ -9,4 +9,4 @@ function tg_prompt_info() {
 }
 
 # alias
-alias tg="terragrunt"
+# alias tg="terragrunt"
